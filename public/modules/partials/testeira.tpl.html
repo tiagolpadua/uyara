@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">		
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/index">SisCEDEP</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<form ng-if='!indexCtrl.isLogado()' novalidate name="loginForm" class="navbar-form navbar-right" ng-submit="indexCtrl.login()">
+				<div class="form-group">
+					<input type="text" placeholder="Usuário" class="form-control" required ng-model="indexCtrl.usuarioLogin">
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="Senha" class="form-control" required ng-model="indexCtrl.senhaLogin">
+				</div>
+				<button type="submit" class="btn btn-success" ng-disabled='!loginForm.$valid'>Acessar</button>
+			</form>
+			<div ng-if='indexCtrl.isLogado()' class="navbar-right">				
+				<form novalidate name="logoutForm" class="navbar-form">				
+					<a>Olá {{indexCtrl.getUserName()}}</a>
+					<button ng-click='indexCtrl.logout()' class="btn btn-success">Sair</button>			
+				</form>
+			</div>
+		</div>
+	</div>
+</nav>	
