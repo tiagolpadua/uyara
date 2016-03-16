@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">		
+	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
@@ -19,12 +19,12 @@
 				</div>
 				<button type="submit" class="btn btn-success" ng-disabled='!loginForm.$valid'>Acessar</button>
 			</form>
-			<div ng-if='indexCtrl.isLogado()' class="navbar-right">				
-				<form novalidate name="logoutForm" class="navbar-form">				
+			<div ng-if='indexCtrl.isLogado()' class="navbar-right">
+				<form novalidate name="logoutForm" class="navbar-form">
 					<a>Olá {{indexCtrl.getUserName()}}</a>
-					<button ng-click='indexCtrl.logout()' class="btn btn-success">Sair</button>			
+					<button ng-click='indexCtrl.logout()' class="btn btn-success">Sair</button>
 				</form>
 			</div>
 		</div>
 	</div>
-</nav>	
+</nav>

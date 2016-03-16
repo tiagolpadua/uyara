@@ -1,15 +1,15 @@
-(function (angular, undefined) {
+(function(angular, undefined) {
     'use strict';
-    
+
     angular.module('indexControllers', ['indexServices'])
         .controller('IndexController', IndexController);
 
-	IndexController.$inject = ['$http', '$location', '$window', 'LoginService'];
+    IndexController.$inject = ['$http', '$location', '$window', 'LoginService'];
 
     function IndexController($http, $location, $window, LoginService) {
         var vm = this;
 
-        vm.login = login;        
+        vm.login = login;
 
         vm.isLogado = LoginService.isLogado;
 

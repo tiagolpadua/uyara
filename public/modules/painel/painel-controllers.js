@@ -1,14 +1,14 @@
-(function (angular, undefined) {
+(function(angular, undefined) {
     'use strict';
 
     //TODO: Redirecionar para index se usuário não estiver logado
-    
+
     angular.module('painelControllers', [])
         .controller('PainelController', PainelController);
 
-	PainelController.$inject = [];
+    PainelController.$inject = [];
 
     function PainelController() {
-        var vm = this;        
+        var vm = this;
     }
 })(angular);

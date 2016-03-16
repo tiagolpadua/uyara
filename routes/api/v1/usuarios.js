@@ -82,7 +82,7 @@ router.delete('/:login', helpers.requiredAuthentication, function(req, res) {
     }
 
     /*
-    var connPool = req.connPool;   
+    var connPool = req.connPool;
 
     connPool.getConnection(function(err, conn) {
       var sql = 'SELECT * FROM cedep_schema.user_table as user_table';

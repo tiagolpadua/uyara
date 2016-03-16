@@ -5,23 +5,27 @@ var cookieParser = require('cookie-parser');
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var mysql = require('mysql');
+//var mysql = require('mysql');
 var path = require('path');
 var session = require('express-session');
 
 //TODO: Logar com usuário correto no BD
+/*
 var connPool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'root'
 });
+*/
 
+/*
 connPool.getConnection(function(err, conn) {
-    if(err) {
-        console.log('Não foi possível estabelecer uma conexão com o banco de dados, ele foi iniciado?');
+    if (err) {
+        console.log('Não foi possível estabelecer uma conexão com o banco de ' +
+          'dados, ele foi iniciado?');
         throw err;
     }
-        
+
     var sql = 'SELECT * FROM cedep_schema.user_table';
 
     conn.query(sql, function(err, rows, fields) {
@@ -40,6 +44,7 @@ connPool.getConnection(function(err, conn) {
         return;
     });
 });
+*/
 
 //var routes = require('./routes/index');
 var alunos = require('./routes/api/v1/alunos');
@@ -78,16 +83,24 @@ app.use(function(req, res, next) {
     delete req.session.success;
     delete req.session.notice;
 
-    if (err) res.locals.error = err;
-    if (msg) res.locals.notice = msg;
-    if (success) res.locals.success = success;
+    if (err) {
+        res.locals.error = err;
+    }
+
+    if (msg) {
+        res.locals.notice = msg;
+    }
+
+    if (success) {
+        res.locals.success = success;
+    }
 
     next();
 });
 
 // Torna o pool de conexões acessível ao roteador
 app.use(function(req, res, next) {
-    req.connPool = connPool;
+    //req.connPool = connPool;
     next();
 });
 
@@ -124,7 +137,6 @@ app.use(function(err, req, res, next) {
     res.send(err.status || 500, err.message);
 });
 
-
 /*
   Procedimentos de encerramento da aplicação
 */
@@ -143,6 +155,7 @@ function exitHandler(options, err) {
 
     if (options.exit) {
         console.log('Encerrando conexão com o banco de dados...');
+        /*
         connPool.end(function(err) {
             if (err) {
                 console.error('Erro ao desconectar do pool: ' + err);
@@ -151,6 +164,7 @@ function exitHandler(options, err) {
             }
             process.exit();
         });
+        */
     }
 }
 
