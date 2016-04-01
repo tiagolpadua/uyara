@@ -9,6 +9,27 @@
     function IndexController($http, $location, $window, LoginService) {
         var vm = this;
 
+        vm.ambientes = [
+            {
+                nome: 'Desenvolvimento',
+                urlBase: 'https://plataforma.desenv.bb.com.br'
+            },
+            {
+                nome: 'Homologação',
+                urlBase: 'https://plataforma.hm.bb.com.br'
+            },
+            {
+                nome: 'Piloto',
+                urlBase: 'https://plataforma.piloto.bb.com.br'
+            },
+            {
+                nome: 'Produção',
+                urlBase: 'https://plataforma.atendimento.bb.com.br'
+            }
+        ];
+
+        vm.contextos = ['/acc/APPS', '/gaw/APPS', '/coc/APPS'];
+
         vm.login = login;
 
         vm.isLogado = LoginService.isLogado;

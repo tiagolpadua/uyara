@@ -7,22 +7,21 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#/index">SisCEDEP</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<form ng-if='!indexCtrl.isLogado()' novalidate name="loginForm" class="navbar-form navbar-right" ng-submit="indexCtrl.login()">
+			<a class="navbar-brand" href="#/dashboard">{{appCtrl.getAppFullTitle()}}</a>
+		</div><div id="navbar" class="navbar-collapse collapse">
+			<form ng-if='!appCtrl.isLogado()' novalidate name="loginForm" class="navbar-form navbar-right" ng-submit="appCtrl.login()">
 				<div class="form-group">
-					<input type="text" placeholder="Usuário" class="form-control" required ng-model="indexCtrl.usuarioLogin">
+					<input type="text" placeholder="Usuário" class="form-control" required ng-model="appCtrl.usuarioLogin">
 				</div>
 				<div class="form-group">
-					<input type="password" placeholder="Senha" class="form-control" required ng-model="indexCtrl.senhaLogin">
+					<input type="password" placeholder="Senha" class="form-control" required ng-model="appCtrl.senhaLogin">
 				</div>
 				<button type="submit" class="btn btn-success" ng-disabled='!loginForm.$valid'>Acessar</button>
 			</form>
-			<div ng-if='indexCtrl.isLogado()' class="navbar-right">
+			<div ng-if='appCtrl.isLogado()' class="navbar-right">
 				<form novalidate name="logoutForm" class="navbar-form">
-					<a>Olá {{indexCtrl.getUserName()}}</a>
-					<button ng-click='indexCtrl.logout()' class="btn btn-success">Sair</button>
+					<a>Olá {{appCtrl.getUserName()}}</a>
+					<button ng-click='appCtrl.logout()' class="btn btn-success">Sair</button>
 				</form>
 			</div>
 		</div>

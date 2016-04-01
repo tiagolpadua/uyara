@@ -2,7 +2,28 @@
     'use strict';
 
     angular.module('indexServices', [])
-        .factory('LoginService', LoginService);
+        .factory('LoginService', LoginService)
+        .factory('AmbientesService', AmbientesService);
+
+    AmbientesService.$inject = ['$http', '$rootScope', '$window'];
+
+    function AmbientesService($http, $rootScope, $window) {
+        var that = this;
+
+        var factory = {};
+
+        factory.login = function(successCallback) {
+            return $http.get('/api/v1/ambientes')
+                .success(function(response) {
+                    successCallback(response);
+                })
+                .error(function(response) {
+                    $window.alert(JSON.stringify(response));
+                });
+        };
+
+        return factory;
+    }
 
     LoginService.$inject = ['$http', '$rootScope', '$window'];
 

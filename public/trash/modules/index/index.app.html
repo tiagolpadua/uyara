@@ -6,26 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Uyara</title>
+    <title>Uyara - Yet Another Monitoring Tool</title>
 
     <!-- Bootstrap CSS -->
     <!-- <link href="/scripts/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="/scripts/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/scripts/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- JQuery -->
     <!-- <script src="/scripts/vendor/jquery/dist/jquery.min.js"></script> -->
-    <script src="/scripts/vendor/jquery/dist/jquery.js"></script>
+    <script src="/scripts/vendor/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap JS -->
     <!-- <script src="/scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script> -->
-    <script src="/scripts/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts/vendor/bootstrap/dist/js/bootstrap-theme.min.js"></script>
 
 
     <!-- AngularJS -->
     <!-- <script src="/scripts/vendor/angular/angular.min.js"></script> -->
     <script src="/scripts/vendor/angular/angular.js"></script>
-    <!-- <script src="/scripts/vendor/angular-route/angular-route.min.js"></script> -->
-    <script src="/scripts/vendor/angular-route/angular-route.js"></script>
+    <script src="/scripts/vendor/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- Local -->
     <link href="/stylesheets/style.css" rel="stylesheet">
@@ -43,7 +43,7 @@
 <body>
     <div ng-controller="IndexController as indexCtrl">
         <div ng-include="'../partials/testeira.tpl.html'"></div>
-        <div ng-view></div>
+        <div ui-view></div>
     </div>
 </body>
 

@@ -1,10 +1,44 @@
 <!DOCTYPE HTML>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app="uyaraApp">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/modules/index/index.app.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Uyara</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="/scripts/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/scripts/vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script src="/scripts/vendor/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="/scripts/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="/scripts/vendor/angular/angular.js"></script>
+    <script src="/scripts/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!-- Local -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="/images/favicon.ico">
+
+    <script src="/app/app.module.js"></script>
+    <script src="/app/app.config.js"></script>
+    <script src="/app/app.controllers.js"></script>
+    <script src="/app/dashboard/dashboard.controllers.js"></script>
+
 </head>
+
+<body>
+    <div ng-controller="AppController as appCtrl">
+        <div ng-include="'/app/partials/testeira.tpl.html'"></div>
+        <div ui-view></div>
+    </div>
+</body>
 
 </html>

@@ -1,9 +1,36 @@
 doctype html
-html
+html(lang='pt-br', ng-app='uyaraApp')
   head
-    title= title
+    title Uyara - Yet Another Monitoring Tool
+    
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    
+    // Local styles
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    // Bootstrap CSS
+    link(href='/scripts/vendor/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/scripts/vendor/bootstrap/dist/css/bootstrap-theme.min.css', rel='stylesheet')
+
+    // JQuery
+    script(src='/scripts/vendor/jquery/dist/jquery.min.js')
+
+    // Bootstrap JS
+    script(src='/scripts/vendor/bootstrap/dist/js/bootstrap.min.js')
+
+    // AngularJS
+    script(src='/scripts/vendor/angular/angular.js')
+    script(src='/scripts/vendor/angular-ui-router/release/angular-ui-router.js')
+
+    // favicon
+    link(rel='icon', type='image/png', href='/images/favicon.ico')
+
+    // App
+    script(src='/app/app.module.js')
+    script(src='/app/app.config.js')
+    script(src='/app/dashboard/dashboard.controllers.js')
+    
   body
     block content
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-    script(src='/javascripts/global.js')

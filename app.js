@@ -1,3 +1,4 @@
+/*jshint node:true */
 'use strict';
 
 var bodyParser = require('body-parser');
@@ -5,9 +6,25 @@ var cookieParser = require('cookie-parser');
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-//var mysql = require('mysql');
 var path = require('path');
+
 var session = require('express-session');
+
+var mongo = require('mongodb');
+//var monk = require('monk');
+//var db = monk('localhost:27017/uyaradb');
+
+var mongoose = require('mongoose');
+
+var dbConnectionString = 'mongodb://localhost:27017/uyaradb';
+mongoose.connect(dbConnectionString);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('Database connected: ' + dbConnectionString);
+});
+
 
 //TODO: Logar com usuário correto no BD
 /*
@@ -46,17 +63,19 @@ connPool.getConnection(function(err, conn) {
 });
 */
 
-//var routes = require('./routes/index');
+//var routes = require('./server/routes/index');
+//var index = require('./routes/index');
 var alunos = require('./routes/api/v1/alunos');
 var login = require('./routes/api/v1/login');
 var logout = require('./routes/api/v1/logout');
+var monitors = require('./routes/api/v1/monitors');
 var usuarios = require('./routes/api/v1/usuarios');
 
 var app = express();
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -68,7 +87,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: 'cedep_paranoa2015',
+    secret: 'uyara_yamt_2015',
     saveUninitialized: true,
     resave: true
 }));
@@ -104,37 +123,41 @@ app.use(function(req, res, next) {
     next();
 });
 
-//app.use('/', routes);
 app.use('/api/v1/alunos', alunos);
 app.use('/api/v1/login', login);
 app.use('/api/v1/logout', logout);
+app.use('/api/v1/monitors', monitors);
 app.use('/api/v1/usuarios', usuarios);
 
-// Rotas não encontradas retornam erro 404 (catch 404 and forward to error handler)
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-/*
- Tratadores de erro
-*/
-// Tratador de erros para desenvolvimento, stacktraces são enviados ao usuário
+// error handlers
+
+// development error handler
+// will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
-        console.log(err);
-        res.status(err.status || 500).json({
+        res.status(err.status || 500);
+        res.render('error', {
             message: err.message,
-            error: err
+            error: err,
         });
     });
 }
 
-// Tratador de erros para produção, stacktraces não são enviados ao usuário
+// production error handler
+// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    console.log(err);
-    res.send(err.status || 500, err.message);
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 /*
@@ -165,6 +188,7 @@ function exitHandler(options, err) {
             process.exit();
         });
         */
+        process.exit();
     }
 }
 
